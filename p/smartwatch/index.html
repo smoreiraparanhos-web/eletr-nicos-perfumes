@@ -85,7 +85,7 @@
       <li><a href="../../index.html#celulares" data-aba-link="celulares:Seminovos">Seminovos</a></li>
       <li><a href="../../index.html#acessorios">Acessórios</a></li>
       <li><a href="../../index.html#perfumes">Perfumes</a></li>
-      <li><a href="../../index.html#conserto" class="nav-destaque">Conserto em até 2h</a></li>
+      <li><a href="../../index.html#conserto" class="nav-destaque">Conserto</a></li>
       <li><a href="../../index.html#loja">Loja</a></li>
     </ul>
   </nav>
@@ -98,8 +98,8 @@
   <header class="pp-cabeca">
     <div>
       <p class="selo pp-selo" id="ppSelo" hidden></p>
-      <h1 id="ppNome">Consultar Smartwatch</h1>
-      <p class="pp-linha" id="ppLinha">Relógio inteligente · Preço sob consulta</p>
+      <h1 id="ppNome">Smartwatch</h1>
+      <p class="pp-linha" id="ppLinha">Relógio inteligente</p>
     </div>
     <a class="pp-wa-topo" data-consultar href="#" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg>Consultar agora</a>
   </header>
@@ -136,10 +136,10 @@
   <section class="pp-caixa" id="ppCaixa" aria-labelledby="t-caixa" hidden>
     <h2 id="t-caixa">Na caixa</h2>
     <div class="pp-caixa-itens" id="ppCaixaItens"></div>
-    <p class="d-nota">Conteúdo do aparelho lacrado. Para seminovos, confirme na consulta.</p>
+    <p class="d-nota">Itens do aparelho lacrado. Seminovos: confirme na consulta.</p>
   </section>
 
-  <section class="pp-servico" aria-labelledby="t-serv">
+  <section class="pp-servico" id="ppServico" aria-labelledby="t-serv">
     <div class="pp-servico-in">
       <div>
         <p class="rotulo">Na BM Digital</p>
@@ -147,7 +147,7 @@
         <a class="btn btn-verde" href="../../p/conserto/">Consultar conserto<svg class="ico" aria-hidden="true"><use href="#i-seta"/></svg></a>
       </div>
       <ul class="pp-servico-lista">
-        <li><span data-render="conserto:#2c2d30"></span><b>Conserto</b>Em até 2h</li>
+        <li><span data-render="conserto:#2c2d30"></span><b>Tela quebrada</b>Retire no mesmo dia</li>
         <li><span data-render="capa:#e7c7c9"></span><b>Capas e películas</b>Para o seu modelo</li>
         <li><span data-render="carregador:#f4f3ef"></span><b>Carregadores</b>iPhone e Android</li>
       </ul>
@@ -158,7 +158,7 @@
     <h2 id="ppComparaTitulo"></h2>
     <p class="ct-dica" aria-hidden="true">Deslize para o lado para ver todos os modelos →</p>
     <div class="ct-rolagem" tabindex="0" role="region" aria-label="Tabela de comparação"><div class="ct" id="ppTabela"></div></div>
-    <p class="d-nota">Especificações publicadas pelo fabricante. “Consulte na loja” onde a informação ainda não foi confirmada.</p>
+    <p class="d-nota">Especificações do fabricante. “—” indica dado ainda não confirmado pela loja.</p>
   </section>
 
   <section class="bloco" aria-labelledby="ppRelTitulo">
@@ -168,11 +168,9 @@
 
   <section class="pp-faq" aria-labelledby="t-faq">
     <h2 id="t-faq">Perguntas frequentes</h2>
-    <details><summary>Como funciona a consulta?</summary><p>Escolha as opções e toque em “Consultar”. O WhatsApp abre com a mensagem pronta, com o produto e as opções escolhidas. Dá para editar antes de enviar. A loja responde com disponibilidade e condições.</p></details>
-    <details><summary>Posso consultar vários produtos de uma vez?</summary><p>Sim. Toque em “Adicionar à lista de consulta” em cada produto e depois em “Consultar todos no WhatsApp”, no ícone da sacola no topo.</p></details>
-    <details><summary>Qual a diferença entre lacrado e seminovo?</summary><p>Lacrado é o aparelho novo, na embalagem fechada de fábrica. Seminovo é um aparelho já usado anteriormente; o estado de cada unidade é informado na consulta.</p></details>
-    <details><summary>Onde fica a loja e qual o horário?</summary><p>Rua Lajeado, 405 — Centro, Eldorado do Sul (RS). Segunda a sábado, das 9h30 às 19h. <a id="faqRota" href="#" target="_blank" rel="noopener">Como chegar</a></p></details>
-    <details><summary>A loja faz conserto?</summary><p>Sim, consertos em até 2h. Informe o modelo e o problema pelo WhatsApp antes de levar o aparelho. <a href="../../p/conserto/">Consultar conserto</a></p></details>
+    <details><summary>Como funciona a consulta?</summary><p>Você escolhe as opções e envia pelo WhatsApp. A loja responde com disponibilidade, preço e formas de pagamento. Nada é reservado ou cobrado antes disso.</p></details>
+    <details><summary>Posso consultar vários produtos de uma vez?</summary><p>Sim. Adicione cada um à lista (ícone da sacola, no topo) e envie tudo numa mensagem.</p></details>
+    <details id="faqLacrado"><summary>Qual a diferença entre lacrado e seminovo?</summary><p>Lacrado é novo, na embalagem de fábrica. Seminovo já teve dono; o estado de cada unidade é informado na consulta.</p></details>
   </section>
 </main>
 
@@ -186,13 +184,13 @@
   <div class="rodape-in">
     <div class="rodape-marca">
       <a class="marca marca-clara" href="../../index.html#inicio" aria-label="BM Digital Eletrônicos, início"><span class="marca-bm">BM</span><span class="marca-txt">Digital<small>Eletrônicos</small></span></a>
-      <p>Loja de celular de Eldorado do Sul.</p>
+      <p>Celulares, acessórios e perfumes.</p>
     </div>
     <div><h3>Produtos</h3><ul><li><a href="../../index.html#celulares" data-aba-link="celulares:iPhone">iPhone</a></li><li><a href="../../index.html#celulares" data-aba-link="celulares:Android">Android</a></li><li><a href="../../index.html#celulares" data-aba-link="celulares:Seminovos">Seminovos</a></li><li><a href="../../index.html#acessorios">Acessórios</a></li><li><a href="../../index.html#perfumes">Perfumes</a></li></ul></div>
-    <div><h3>Serviços</h3><ul><li><a href="../../index.html#conserto">Conserto em até 2h</a></li><li><a data-wa="Olá! Preciso de ajuda para escolher um celular." href="#" target="_blank" rel="noopener">Ajuda para escolher</a></li></ul></div>
+    <div><h3>Serviços</h3><ul><li><a href="../../index.html#conserto">Conserto de celular</a></li><li><a data-wa="Olá! Preciso de ajuda para escolher um celular." href="#" target="_blank" rel="noopener">Ajuda para escolher</a></li></ul></div>
     <div><h3>Contato</h3><ul><li><a data-wa="Olá! Vim pelo site." href="#" target="_blank" rel="noopener">WhatsApp (51) 9358-7977</a></li><li><a href="https://www.instagram.com/bmdigitaleletronicos/" target="_blank" rel="noopener">@bmdigitaleletronicos</a></li><li>Rua Lajeado, 405 — Centro</li><li>Seg a sáb, 9h30 às 19h</li></ul></div>
   </div>
-  <div class="rodape-base"><p>© BM Digital Eletrônicos · Eldorado do Sul (RS)</p><a href="../../privacidade.html">Privacidade</a>
+  <div class="rodape-base"><p>© BM Digital Eletrônicos</p><a href="../../privacidade.html">Privacidade</a>
   </div>
 </footer>
 
@@ -200,10 +198,10 @@
 <dialog class="sacola" id="sacola" aria-labelledby="sTitulo">
   <div class="s-cabeca"><h2 id="sTitulo">Lista de consulta</h2><button class="d-fechar" id="sFechar" aria-label="Fechar lista"><svg class="ico" aria-hidden="true"><use href="#i-x"/></svg></button></div>
   <ul class="s-itens" id="sItens"></ul>
-  <div class="s-vazio" id="sVazio"><p>Nenhum produto na lista.</p><p>Abra um produto e toque em “Adicionar à lista de consulta” para perguntar sobre vários de uma vez.</p></div>
+  <div class="s-vazio" id="sVazio"><p>Nenhum produto na lista.</p><p>Adicione produtos para perguntar sobre todos numa mensagem só.</p></div>
   <div class="s-rodape">
     <a class="btn btn-verde btn-cheio" id="sWa" href="#" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg>Consultar todos no WhatsApp</a>
-    <p class="d-nota">Uma mensagem com todos os itens. Não é um pedido; a loja confirma disponibilidade.</p>
+    <p class="d-nota">Não é um pedido: a loja responde com disponibilidade e preço.</p>
   </div>
 </dialog>
 

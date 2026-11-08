@@ -39,8 +39,8 @@
   });
   $("#ppSelo").textContent = p.selo || "";
   $("#ppSelo").hidden = !p.selo;
-  $("#ppNome").textContent = ehConserto ? "Conserto de celular" : `Consultar ${p.nome}`;
-  $("#ppLinha").textContent = `${p.linha} · ${p.preco || (ehConserto ? "Em até 2h" : "Preço sob consulta")}`;
+  $("#ppNome").textContent = p.nome;
+  $("#ppLinha").textContent = p.preco ? `${p.linha} · ${p.preco}` : p.linha;
 
   /* ---------- galeria ---------- */
   const palco = $("#ppPalco"), miniaturas = $("#ppMinis");
@@ -91,7 +91,7 @@
         ${o.valores.map((v, vi) => {
           const nome = ehCor ? v.nome : v;
           return `<label${ehCor ? ` title="${nome}"` : ""}><input type="radio" name="o${oi}" value="${nome}" data-op="${o.nome}" ${ehCor ? `data-cor="${v.cor}"` : ""} ${(ehCor ? v.cor === corAtual : vi === 0) ? "checked" : ""}>
-            <span ${ehCor ? `style="--c:${v.cor}"` : ""}>${ehCor ? `<span class="sr">${nome}</span>` : grande ? `<b>${nome}</b><small>${o.nome === "Condição" ? (nome === "Lacrado" ? "Embalagem de fábrica" : "Usado anteriormente") : "Consultar"}</small>` : nome}</span></label>`;
+            <span ${ehCor ? `style="--c:${v.cor}"` : ""}>${ehCor ? `<span class="sr">${nome}</span>` : grande ? `<b>${nome}</b>${o.nome === "Condição" ? `<small>${nome === "Lacrado" ? "Embalagem de fábrica" : "Já teve dono"}</small>` : ""}` : nome}</span></label>`;
         }).join("")}
       </div>
     </fieldset>`;
@@ -100,11 +100,11 @@
       <label class="pp-obs"><span><b>${ehConserto ? "Detalhes." : "Observação."}</b> ${p.campo}</span>
       <textarea id="ppObs" rows="2" maxlength="160"></textarea></label>
     </div>
-    <div class="pp-passo pp-ajuda-box">
-      <p><b>Dúvida para escolher?</b> Fale com a loja antes de decidir.</p>
+    ${ehConserto ? "" : `<div class="pp-passo pp-ajuda-box">
+      <p><b>Em dúvida?</b> Fale com a loja antes de decidir.</p>
       <a data-wa-ajuda href="#" target="_blank" rel="noopener">Pedir orientação<svg class="ico" aria-hidden="true"><use href="#i-seta"/></svg></a>
-    </div>`;
-  $("[data-wa-ajuda]").href = linkWa(`Olá! Estou vendo ${p.nome} no site e gostaria de ajuda para escolher.`);
+    </div>`}`;
+  if (!ehConserto) $("[data-wa-ajuda]").href = linkWa(`Olá! Estou vendo ${p.nome} no site e gostaria de ajuda para escolher.`);
 
   const opsTexto = () => Object.entries(escolhas).map(([k, v]) => `${k.toLowerCase()}: ${v}`).join(", ");
   function mensagem() {
@@ -138,14 +138,15 @@
   $("#ppObs").addEventListener("input", atualizar);
 
   /* ---------- resumo ---------- */
-  $("#ppResumoTitulo").innerHTML = ehConserto ? "Seu conserto.<br><span>Em até 2h.</span>" : `Seu ${p.nome}.<br><span>Do jeito que você escolheu.</span>`;
-  $("#ppResumoPreco").textContent = p.preco || (ehConserto ? "Prazo e valor na consulta" : "Preço e disponibilidade na consulta");
+  $("#ppResumoTitulo").innerHTML = ehConserto ? "Seu conserto.<br><span>Pronto em até 2h.</span>" : `Seu ${p.nome}.<br><span>Do jeito que você escolheu.</span>`;
+  $("#ppResumoPreco").textContent = p.preco || (ehConserto ? "Valor conforme o modelo" : "Preço e disponibilidade pelo WhatsApp");
   $$("[data-add-config]").forEach((b) => b.addEventListener("click", () => {
     adicionar({ id: p.id, ops: opsTexto(), extra: $("#ppObs").value.trim(), cor: cores ? corAtual : null });
     b.classList.add("feito"); const s = b.querySelector("span"); const t = s.textContent; s.textContent = "Adicionado à lista";
     setTimeout(() => { b.classList.remove("feito"); s.textContent = t; }, 1800);
   }));
-  $$("[data-consultar-txt]").forEach((s) => (s.textContent = ehConserto ? "Consultar conserto" : `Consultar ${p.nome}`));
+  $$("[data-consultar-txt]").forEach((s) => (s.textContent = "Enviar consulta"));
+  if (ehConserto) $("#ppServico").hidden = true; // a própria página já é o conserto
 
   /* ---------- na caixa ---------- */
   if (p.caixa) {
@@ -172,13 +173,15 @@
           <b>${x.nome}</b><span class="ct-linha-txt">${x.linha}</span>
           <span class="ct-ver">${x.id === p.id ? "Você está vendo" : "Ver modelo"}</span></a>`;
       }).join("")}</div>
-      ${chaves.map((k) => `<div class="ct-grupo"><h3>${k}</h3><div class="ct-linha">${grupo.map((x) => `<p class="${x.specs && x.specs[k] ? "" : "ct-falta"}">${(x.specs && x.specs[k]) || "Consulte na loja"}</p>`).join("")}</div></div>`).join("")}`;
+      ${chaves.map((k) => `<div class="ct-grupo"><h3>${k}</h3><div class="ct-linha">${grupo.map((x) => `<p class="${x.specs && x.specs[k] ? "" : "ct-falta"}">${(x.specs && x.specs[k]) || "—"}</p>`).join("")}</div></div>`).join("")}`;
   }
 
   /* ---------- relacionados ---------- */
   const rel = PRODS.filter((x) => x.id !== p.id && (x.categoria === p.categoria || (ehCelular && ["capa", "pelicula", "carregador"].includes(x.id))))
     .sort((a, b) => (b.categoria !== p.categoria) - (a.categoria !== p.categoria)).slice(0, 5);
   $("#ppRelacionados").innerHTML = rel.map(cartao).join("");
+  $("#ppRelacionados").closest(".bloco").hidden = !rel.length;
+  if (!ehCelular) $("#faqLacrado").remove(); // pergunta só faz sentido para celular
   if (ehCelular) $("#ppRelTitulo").textContent = "Combina com este celular";
 
   /* ---------- barra móvel: aparece quando o resumo não está visível ---------- */

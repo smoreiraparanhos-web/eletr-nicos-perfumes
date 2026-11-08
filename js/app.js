@@ -1,4 +1,4 @@
-/* Página inicial: vitrine, seções com abas, mostrador, créditos. */
+/* Página inicial: vitrine, seções com abas, mostrador. */
 (window.BM_PRONTO || Promise.resolve()).then(() => {
   "use strict";
   const { $, $$, reduzido, visual, cartao, urlProduto } = window.BM;
@@ -43,7 +43,7 @@
   new IntersectionObserver((e, o) => { if (e[0].isIntersecting) { mapa.src = L.mapa; o.disconnect(); } }, { rootMargin: "800px" }).observe(mapa);
 
   const entrar = (ul) => { ul.classList.remove("entrando"); void ul.offsetWidth; ul.classList.add("entrando"); };
-  $("#gradeNovidades").innerHTML = PRODS.filter((p) => p.destaque && p.id !== "iphone-18-pro-max").slice(0, 8).map(cartao).join("");
+  $("#gradeNovidades").innerHTML = PRODS.filter((p) => p.destaque && p.categoria !== "celulares").slice(0, 4).map(cartao).join("");
 
   /* seções com abas — a aba escolhida é lembrada ao voltar de um produto */
   let abas = {};
@@ -79,11 +79,6 @@
     if (a) { const [c, s] = a.dataset.abaLink.split(":"); mostrarAba(c, s); }
   });
 
-  /* listas triplas */
-  const linha = (p) => `<li><a href="${urlProduto(p.id)}"><span class="l-arte">${visual(p)}</span><span><b>${p.nome}</b><small>${p.preco || "Consultar"}</small></span></a></li>`;
-  $('[data-lista="lacrados"]').innerHTML = PRODS.filter((p) => p.categoria === "celulares" && p.linha.startsWith("Lacrado")).slice(0, 4).map(linha).join("");
-  $('[data-lista="seminovos"]').innerHTML = PRODS.filter((p) => p.categoria === "celulares" && /seminovo/i.test(p.linha + p.sub)).slice(0, 4).map(linha).join("");
-  $('[data-lista="acessorios"]').innerHTML = PRODS.filter((p) => p.categoria === "acessorios").slice(0, 4).map(linha).join("");
 
   /* vitrine manual */
   const vit = $("#vitrine"), slides = $$(".slide", vit), pontos = $("#vitPontos");
@@ -103,14 +98,13 @@
   vit.addEventListener("touchend", (e) => { if (x0 === null) return; const dx = e.changedTouches[0].clientX - x0; if (Math.abs(dx) > 50) ir(atual + (dx < 0 ? 1 : -1)); x0 = null; });
   ir(0);
 
-  /* mostrador 0 → 2h e créditos */
+  /* mostrador 0 → 2h */
   const marcas = $(".m-marcas");
   for (let i = 0; i < 24; i++) {
     const a = (i / 24) * Math.PI * 2, r1 = i % 3 ? 94 : 88, r2 = 98;
     marcas.insertAdjacentHTML("beforeend", `<line x1="${120 + Math.sin(a) * r1}" y1="${120 - Math.cos(a) * r1}" x2="${120 + Math.sin(a) * r2}" y2="${120 - Math.cos(a) * r2}"/>`);
   }
   const secC = $("#conserto"), arco = $(".m-arco"), ponteiro = $(".m-ponteiro"), mHora = $("#mHora"), mMin = $("#mMin");
-  const creditos = $(".creditos"), rolo = $("#rolo");
   const lim = (v) => Math.min(1, Math.max(0, v));
   let pedido = false;
   function quadro() {
@@ -122,11 +116,6 @@
     ponteiro.style.transform = `rotate(${p * 360}deg)`;
     mHora.textContent = Math.floor(min / 60) + "h";
     mMin.textContent = String(min % 60).padStart(2, "0");
-    if (!reduzido && !document.documentElement.classList.contains("fx-reduzido")) {
-      const c = creditos.getBoundingClientRect();
-      const t = lim(lim(-c.top / (c.height - innerHeight)) / 0.72);
-      rolo.style.transform = `translate3d(0, ${innerHeight - t * (innerHeight + rolo.offsetHeight)}px, 0)`;
-    }
   }
   addEventListener("scroll", () => { if (!pedido) { pedido = true; requestAnimationFrame(quadro); } }, { passive: true });
   addEventListener("resize", quadro);

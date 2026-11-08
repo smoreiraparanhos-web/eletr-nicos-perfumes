@@ -113,8 +113,8 @@ for (const p of PRODS) {
     .replace(/<title>[^<]*<\/title>/, `<title>${esc(titulo)}</title>`)
     .replace(/<meta name="description" content="[^"]*">/, `<meta name="description" content="${esc(desc)}">`)
     .replace(/(href|src)="(?!https?:|#|mailto:|tel:|data:|\.\.\/)([^"]+)"/g, '$1="../../$2"')
-    .replace('<h1 id="ppNome"></h1>', `<h1 id="ppNome">${esc(p.categoria === "consertos" ? "Conserto de celular" : `Consultar ${p.nome}`)}</h1>`)
-    .replace('<p class="pp-linha" id="ppLinha"></p>', `<p class="pp-linha" id="ppLinha">${esc(`${p.linha} · ${p.preco || (p.categoria === "consertos" ? "Em até 2h" : "Preço sob consulta")}`)}</p>`)
+    .replace('<h1 id="ppNome"></h1>', `<h1 id="ppNome">${esc(p.nome)}</h1>`)
+    .replace('<p class="pp-linha" id="ppLinha"></p>', `<p class="pp-linha" id="ppLinha">${esc(p.preco ? `${p.linha} · ${p.preco}` : p.linha)}</p>`)
     .replace("</head>", `<script type="application/ld+json">${JSON.stringify(ld)}</script>\n</head>`);
   h = trocarMeta(h, meta({ titulo, desc, caminho, imagem: `img/og/${p.id}.png`, alt: `${p.nome} — BM Digital Eletrônicos`, raiz: "../../", tipo: "product" }));
   gravar(`${caminho}index.html`, h);

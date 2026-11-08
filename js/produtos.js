@@ -71,7 +71,7 @@ window.PRODUTOS = [
       { nome: "Rosa", cor: "#ecc6d0" }, { nome: "Branco", cor: "#ecebe6" }, { nome: "Preto", cor: "#2c2d30" }] }, CAP],
     specs: { Tela: "6,1 pol. Super Retina XDR", Chip: "A18", "Câmera": "Fusion 48 MP + ultra-angular 12 MP", Conector: "USB-C", Destaque: "Botão de Ação e Controle da Câmera" },
     caixa: ["iPhone 16", "Cabo de carregamento USB-C"],
-    campo: "Alguma observação? (opcional)"
+    campo: "Opcional"
   },
   {
     id: "iphone-15", categoria: "celulares", sub: "iPhone", nome: "iPhone 15",
@@ -83,7 +83,7 @@ window.PRODUTOS = [
       { nome: "Amarelo", cor: "#efe7bf" }, { nome: "Preto", cor: "#34363a" }] }, CAP],
     specs: { Tela: "6,1 pol. Super Retina XDR", Chip: "A16 Bionic", "Câmera": "Principal 48 MP + ultra-angular 12 MP", Conector: "USB-C", Destaque: "Dynamic Island" },
     caixa: ["iPhone 15", "Cabo de carregamento USB-C"],
-    campo: "Alguma observação? (opcional)"
+    campo: "Opcional"
   },
   {
     id: "moto-g17", categoria: "celulares", sub: "Android", nome: "Motorola moto g17",
@@ -94,7 +94,7 @@ window.PRODUTOS = [
   },
   {
     id: "android-outros", categoria: "celulares", sub: "Android", nome: "Outros Android",
-    linha: "Consulte marcas e modelos",
+    linha: "Outras marcas e modelos",
     render: { tipo: "moto", cor: "#2f3a36" }, fotos: [], preco: null,
     detalhes: ["Informe a marca ou o modelo que procura"],
     opcoes: [{ nome: "Cor", valores: [{ nome: "Preto", cor: "#2f3a36" }, { nome: "Azul", cor: "#4f6fa0" }, { nome: "Branco", cor: "#e9eae6" }] }, COND], campo: "Marca ou modelo"
@@ -164,14 +164,14 @@ window.PRODUTOS = [
   },
   {
     id: "perfume-masc", categoria: "perfumes", sub: "", nome: "Perfume masculino",
-    linha: "Fragrâncias sob consulta", destaque: true,
+    linha: "Amadeirado, oriental ou aquático", destaque: true,
     render: { tipo: "perfume", cor: "#7a4a22" }, fotos: [], preco: null,
     detalhes: ["Marcas e fragrâncias sob consulta"],
     opcoes: [{ nome: "Estilo", valores: [{ nome: "Oriental", cor: "#3a1d10" }, { nome: "Amadeirado", cor: "#7a4a22" }, { nome: "Aquático", cor: "#2f5d7c" }] }], campo: "Fragrância ou marca que procura (opcional)"
   },
   {
     id: "perfume-fem", categoria: "perfumes", sub: "", nome: "Perfume feminino",
-    linha: "Fragrâncias sob consulta",
+    linha: "Floral, doce ou frutado",
     render: { tipo: "perfume", cor: "#d79bb0" }, fotos: [], preco: null,
     detalhes: ["Marcas e fragrâncias sob consulta"],
     opcoes: [{ nome: "Estilo", valores: [{ nome: "Floral", cor: "#d79bb0" }, { nome: "Doce", cor: "#9e3f5c" }, { nome: "Frutado", cor: "#e0a35a" }] }], campo: "Fragrância ou marca que procura (opcional)"
@@ -187,7 +187,7 @@ window.PRODUTOS = [
     id: "conserto", categoria: "consertos", sub: "", nome: "Conserto de celular",
     linha: "Em até 2h",
     render: { tipo: "conserto", cor: "#2c2d30" }, fotos: [], preco: null,
-    detalhes: ["Consertos em até 2h", "Informe o modelo para consultar o prazo"],
+    detalhes: ["Em até 2h", "Informe o modelo para saber o valor"],
     opcoes: [{ nome: "Problema", valores: ["Tela", "Outro defeito"] }], campo: "Modelo do aparelho e o que aconteceu"
   }
 ];

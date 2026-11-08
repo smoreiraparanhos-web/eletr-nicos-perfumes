@@ -143,7 +143,7 @@
         <span class="item-arte ${t.escuro ? "escura" : ""}" style="--fa:${t.a};--fb:${t.b}"${p.fotos && p.fotos.length ? ">" + visual(p, cor) : ` data-arte="${p.render.tipo}|${cor}">`}</span>
         <span class="item-nome">${p.nome}</span>
         <span class="item-linha">${p.linha}</span>
-        <span class="item-preco">${p.preco || "Consultar"}</span>
+        ${p.preco ? `<span class="item-preco">${p.preco}</span>` : ""}
       </a>
       ${cores && cores.length > 1 ? `<div class="item-cores" role="group" aria-label="${p.nome}: ver cores">${cores.slice(0, 5).map((c, j) =>
         `<button type="button" class="item-cor" style="--c:${c.cor}" data-cor-i="${j}" aria-label="${c.nome}" aria-pressed="${j === 0}" title="${c.nome}"></button>`).join("")}</div>` : ""}
@@ -187,7 +187,7 @@
   /* ---------- frases da barra de topo (giram devagar) ---------- */
   const barraMeio = $(".barra-meio");
   if (barraMeio && !reduzido) {
-    const frases = [barraMeio.textContent, "Passou pela Rua Lajeado? Entre para ver de perto.", "Presente resolvido: perfumes na loja.", "Uma mensagem e você sabe se tem o seu modelo."];
+    const frases = [barraMeio.textContent, "Perfumes para presente na loja.", "Uma mensagem e você sabe se tem o seu modelo."];
     let fi = 0, pausa = false;
     barraMeio.addEventListener("mouseenter", () => (pausa = true));
     barraMeio.addEventListener("mouseleave", () => (pausa = false));
