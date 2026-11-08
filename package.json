@@ -1,0 +1,6 @@
+{
+  "name": "bm-digital-site",
+  "private": true,
+  "scripts": { "gerar": "node ferramentas/gerar.mjs" },
+  "devDependencies": { "playwright-core": "1.48.2" }
+}

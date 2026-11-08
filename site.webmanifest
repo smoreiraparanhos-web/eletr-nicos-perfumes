@@ -1,0 +1,20 @@
+{
+  "name": "BM Digital Eletrônicos",
+  "short_name": "BM Digital",
+  "start_url": "./index.html",
+  "display": "browser",
+  "background_color": "#0d0f0e",
+  "theme_color": "#0d0f0e",
+  "icons": [
+    {
+      "src": "img/icone-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "img/icone-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
